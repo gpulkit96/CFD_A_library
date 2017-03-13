@@ -1,11 +1,16 @@
 # CFD_A_library
 An automated library software to catalogue books and efficiently displays its details.
-It is implemented in Django Framework and MySql database is used.Goodreads Api is used for book description, review, rating and book cover. Reminder Mail is send when a book is due.
 
+### Features
+- Implemented in Django Framework and MySql database.
+- Goodreads Api is used for book description, review, rating and book cover. 
+- Automatic fine calculation.
+- A reminder mail is send when a book is due.
+- Users image is displayed from IITK database.
+- Admin and various staff accounts.
 ## Install
 
 ### Install via pip
-
 ```
 pip install Alibrary
 ```
@@ -21,7 +26,6 @@ Python Packages
 - Pytz
 - Regex
 - Requests
-
 
 ## Run
 
