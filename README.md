@@ -8,7 +8,6 @@ An automated library software to catalogue books and efficiently displays its de
 - A reminder mail is send when a book is due.
 - Users image is displayed from IITK database.
 - Admin and various staff accounts.
-## Install
 
 ### Install via pip
 ```
