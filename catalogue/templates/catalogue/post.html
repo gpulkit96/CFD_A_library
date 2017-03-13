@@ -1,0 +1,16 @@
+{% extends "home/header.html"%}
+{% block content %}
+	<h3>{{post.Title}}</h3>	<h6>on {{post.date}}</h6>
+	<p>hidden date: {{post.hidden_date}}</p>
+	<p>Genre: {{post.Genre}}</p>
+	<p>Author: {{post.Author}}</p>
+	<p>Call Num: {{post.CallNum}}</p>
+	<img src="{{image_url}}" class="img-rounded">
+	<div>Description: {{description}}</div>
+	<p>Average Rating : {{rating}}</p>
+	{% if post.memberid != None %}
+        <p>Issued to <a href="/member/{{post.memberid}}">{{ post.member_Name}}</a> {{post.memberid}}</p>
+    {% else %}
+    	<p>Available</p>
+    {% endif %}
+{% endblock %}

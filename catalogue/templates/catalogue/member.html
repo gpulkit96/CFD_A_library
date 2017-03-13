@@ -1,0 +1,10 @@
+{% extends "home/header.html" %}
+{% block content %}
+	<form method="GET" action=''>
+    <input type='text' name='q' placeholder='Search posts' value ='{{request.GET.q}}'/>
+    <input type='submit' value='Search'/>
+    </form>
+	{% for post in object_list %}
+		<h5>{{ post.date|date:"Y-m-d" }}<a href="/member/{{post.id}}"> {{ post.Name }}</a></h5>
+	{% endfor %}
+{% endblock %}
