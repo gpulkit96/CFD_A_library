@@ -11,7 +11,7 @@ An automated library software to catalogue books and efficiently displays its de
 
 ### Install via pip
 ```
-pip install Alibrary
+pip install A_library
 ```
 
 ### Install via Github
