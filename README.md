@@ -1,7 +1,6 @@
 # CFD_A_library
 An automated library software to catalogue books and efficiently displays its details.
-
-It is implemented in Django Framework and MySql database is used.
+It is implemented in Django Framework and MySql database is used.Goodreads Api is used for book description, review, rating and book cover. Reminder Mail is send when a book is due.
 
 ## Install
 
@@ -11,7 +10,7 @@ It is implemented in Django Framework and MySql database is used.
 pip install Alibrary
 ```
 
-### Install Github
+### Install via Github
 
 ```
 git clone https://github.com/R-Wolf/CFD_A_library
