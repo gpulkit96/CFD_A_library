@@ -1,0 +1,57 @@
+{% extends "home/header.html" %}
+{% block content %}
+  <form method="GET" action=''>
+  <div class="row">
+    <div class="col-sm-2">
+      <input type='text' name='q' class="form-control" placeholder='Search Members' value ='{{request.GET.q}}' aria-describedby="basic-addon2"/>
+    </div>
+    <div class="col-sm-2"> 
+      <select class="form-control" id="s" name="f" value= '{{request.GET.f}}'>
+        <option selected="selected">Choose</option>
+        <option>Name</option>
+        <option>RollNo</option>
+        <option>Status</option>
+      </select>
+    </div>
+    <div class="col-sm-2" > 
+            <select class="form-control" id="s1" name="i" value= '{{request.GET.i}}'>
+                <option selected="selected">Entries</option>
+                <option>1-10</option>
+                <option>1-20</option>
+                <option>1-50</option>
+                <option>All</option>
+            </select>
+        </div>
+      <div class="col-sm-2">
+          <input type='submit'  class="form-control" value='Search'/>
+      </div>
+    </div>
+  
+  
+    </form>
+    <div class="row">
+      <div class="col-md-12">
+          <hr class="style13">
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>RollNo</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for post in object_list %}
+                <tr>
+                 <h5><td>{{ post.id }}</td>
+                   <td><a href="/member/{{post.id}}">{{ post.Name }}</a></td>
+                   <td>{{ post.RollNo }}</td>
+                   <td>{{ post.date }}</td></h5>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

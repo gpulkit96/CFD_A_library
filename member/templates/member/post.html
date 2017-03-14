@@ -1,0 +1,17 @@
+{% extends "home/header.html"%}
+{% block content %}
+	<h3>Name: {{member.Name}}</h3><h6>on {{member.date}}</h6>
+	<p>Roll No.: {{member.RollNo}}</p>
+	<p>Dues: {{member.Dues}}</p>
+	<p>Status: {{member.Status}}</p>
+	<div>
+		{% if member.books.all %}
+        	<p>Books Issued</p>
+			{% for book in member.books.all %}
+				<li><a href="/catalogue/{{book.id}}">{{ book.Title }}</a></li>
+			{% endfor %}
+    	{% else %}
+    		<p>Not Issued Any Book</p>
+    	{% endif %}
+	</div>
+{% endblock %}
