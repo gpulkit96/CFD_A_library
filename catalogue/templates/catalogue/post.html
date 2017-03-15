@@ -1,16 +1,51 @@
 {% extends "home/header.html"%}
 {% block content %}
-	<h3>{{post.Title}}</h3>	<h6>on {{post.date}}</h6>
-	<p>hidden date: {{post.hidden_date}}</p>
-	<p>Genre: {{post.Genre}}</p>
-	<p>Author: {{post.Author}}</p>
-	<p>Call Num: {{post.CallNum}}</p>
-	<img src="{{image_url}}" class="img-rounded">
-	<div>Description: {{description}}</div>
-	<p>Average Rating : {{rating}}</p>
-	{% if post.memberid != None %}
-        <p>Issued to <a href="/member/{{post.memberid}}">{{ post.member_Name}}</a> {{post.memberid}}</p>
-    {% else %}
-    	<p>Available</p>
-    {% endif %}
+	<style>
+	  .font1{
+		font-family: 'Merriweather', serif;
+	  }
+	  .font2{
+		font-family: 'Lato', sans-serif;
+	  }
+  </style>
+	<div class="row font2">
+		<div class="col-md-8">
+			<h3 class="font1">{{post.Title}}</h3>	<h6 class="font2">on {{post.date}}</h6>
+			<div class="row font2">
+				<div class="col-md-3">
+				<p><strong>Genre: </strong>{{post.Genre}}</p>
+				</div>
+				<div class="col-md-3">
+					<p><strong>Author: </strong>{{post.Author}}</p>
+				</div>
+				<div class="col-md-3">
+					<p><strong >Call Num: </strong>{{post.CallNum}}</p>
+				</div>
+				<div class="col-md-3">
+					{%  if post.rating %}
+						<p><strong>Average Rating: </strong>{{post.rating}}</p>
+					{% endif %}
+				</div>
+			</div>
+			
+			{%  if post.description %}
+				<span class="font1"><strong>Description</strong>: {{post.description}}</span>
+			{% endif %}
+
+			<div>
+				{% if post.memberid != None %}
+			        <p><strong>Issued to </strong><a href="/member/{{post.memberid}}">{{ post.member_Name}}</a></p>
+			    {% else %}
+			    	<p><strong>Available</strong></p>
+			    {% endif %}
+			</div>
+			
+		</div>
+		<div class="col-md-4">
+			<img src="{{post.image}}" class="img-rounded i" height="250">
+		</div>
+	</div>
+	
+	
+	
 {% endblock %}

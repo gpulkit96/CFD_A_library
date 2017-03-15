@@ -13,12 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from django.contrib.auth.models import Group
 from django.conf.urls import url , include
 from django.contrib import admin
-admin.site.site_header = 'Gymkhana Library'
+admin.site.site_header = 'Automated Library'
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('home.urls')),
     url(r'^catalogue/', include('catalogue.urls')),
     url(r'^member/', include('member.urls')),
 ]
+
+admin.site.unregister(Group)

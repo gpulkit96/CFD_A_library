@@ -25,8 +25,9 @@ SECRET_KEY = '64$x#vvbtckmsw+dv&sxp9bgh*55hjz7t9%0z@p91$89n^o@%_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = (
+    'localhost','automated-library.azurewebsites.net','127.0.0.1',
+)
 
 # Application definition
 
@@ -120,11 +121,37 @@ USE_L10N = True
 USE_TZ = True
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'mmtp.iitk.ac.in'
-EMAIL_HOST_USER = 'sshanu'
-EMAIL_HOST_PASSWORD = 'Lstmres@0341'
-EMAIL_PORT = 25
+# EMAIL_HOST = 'mmtp.iitk.ac.in'
+# EMAIL_HOST_USER = 'sshanu'
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_PORT = 25
+
+# 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'sshanuiit659@gmail.com'
+EMAIL_HOST_PASSWORD = 'shanu123'
+EMAIL_PORT = 587
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'static').replace('\\', '/')
 
+# URL prefix for static files.
+# Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)

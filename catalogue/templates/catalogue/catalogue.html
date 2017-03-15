@@ -1,5 +1,6 @@
 {% extends "home/header.html" %}
 {% block content %}
+<div class="font2">
     <form method="GET" action=''>
     <div class="row">
         <div class="col-sm-2">
@@ -7,8 +8,7 @@
         </div>
         <div class="col-sm-2"> 
             <select class="form-control" id="s" name="f" value= '{{request.GET.f}}'>
-                <option selected="selected">Choose</option>
-                <option>Title</option>
+                <option selected="selected">Title</option>
                 <option>Author</option>
                 <option>Genre</option>
                 <option>Call Num</option>
@@ -55,4 +55,5 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
 {% endblock %}
