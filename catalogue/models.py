@@ -4,7 +4,9 @@ import json
 import re
 import xml.etree.ElementTree as ET
 import urllib
-
+from home.models import Home
+from datetime import datetime, timedelta
+import pytz
 class Post(models.Model):
 	CallNum=models.CharField(max_length=140)
 	Barcode=models.CharField(max_length=140)
@@ -17,18 +19,20 @@ class Post(models.Model):
 	memberid = models.IntegerField(editable=False, null=True)
 	choices = ((0 , 'OK'), (1, 'DUE'))
 	duestatus = models.IntegerField(choices = choices, default=0)
-	image = models.CharField(max_length=200, null=True)
+	image = models.CharField(max_length=500, null=True)
 	description = models.CharField(max_length=2000, null=True)
 	rating = models.CharField(max_length=100,null=True)
 
 	def __str__(self):
+		h1 = Home.objects.first()
 		title = re.sub("[^\w]", " ",  self.Title).split()
 		author = re.sub("[^\w]", " ",  self.Author).split()
 		p = re.compile(r'<.*?>')
 		bTitle = title[0]
 		bAuthor = author[0]
-		if (self.image==None) or (self.description==None):
-
+		if (self.image==None)and((datetime.now(pytz.timezone('Asia/Kolkata')) - h1.book_date).days >1):
+			h1.book_date = datetime.now(pytz.timezone('Asia/Kolkata'))
+			h1.save()
 			for x in range(1,len(title)):
 				bTitle += '+'+ title[x]
 			for x in range(1,len(author)):

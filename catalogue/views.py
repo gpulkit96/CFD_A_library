@@ -9,6 +9,7 @@ import json
 import re
 import xml.etree.ElementTree as ET
 import urllib
+from django import forms
 
 class IndexView(generic.ListView):
 	template_name="catalogue/catalogue.html"
