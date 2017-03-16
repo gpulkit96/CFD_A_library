@@ -1,4 +1,6 @@
 {% block content %}
+{% load staticfiles %}
+
 <ul class="list-unstyled">
     <ul>
       <li><p>Existing members and bibliographies are displayed in their respective sections.</p></li>
@@ -10,5 +12,10 @@
       <li><p>Status of members with issued books must contain the keyword 'Active' followed by the ids of issued books.</p></li>
       <li><p>Rest is self explanatory. Enjoy!! :)</p></li>
     </ul>
+</ul>
+<ul>
+  <li><img src="{% static 'home/img/home0.jpg' %}"></li>
+  <li><img src="{% static 'home/img/home1.jpg' %}"></li>
+  <li><img src="{% static 'home/img/home2.jpg' %}"></li>
 </ul>
 {% endblock %}

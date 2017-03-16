@@ -1,0 +1,89 @@
+{% extends "home/header.html" %}
+{% block content %}
+{% load staticfiles %}
+<style type="text/css">
+    @font-face {
+       font-family: Helvetica;
+       src: url({% static 'helvetica-normal-58c7de8a5d6d0.ttf' %});
+    }
+        .padd{
+            padding:0;
+            margin:0;
+        }
+        .pad{
+            padding-left:5px; 
+        }
+            .font2{
+    font-family: 'Lato', sans-serif;
+  }
+        .font3{
+        font-family: 'Helvetica';
+        }
+        .cite_color {
+            color: #006d21;
+        }
+        .font1{
+        font-family: 'Permanent Marker', cursive;
+        }
+</style>
+<div class="font2">
+    <form method="GET" action=''>
+    <div class="row" style="padding-bottom:15px">
+        <div class="col-sm-8">
+            <input type='text' name='q' class="form-control" placeholder='Bing Search' value ='{{request.GET.q}}' aria-describedby="basic-addon2"/>
+        </div>
+        <div class="col-sm-2">
+            <input type='submit'  class="form-control" value='Aloh Mora'/>
+        </div>
+    </div>
+    </form>
+</div>
+<div class="row pad" >
+        {%  if url0 %}
+        <dl style="padding:3px">
+            <h2 class="padd font2" style="font-size:18px"><a href="{{url0}}}" ><strong>{{name0}}</strong></a></h2>
+            <div class="b_caption">
+                <cite class="cite_color">{{disp_url0}}</cite>
+                <p>{{snippet0}}</p>
+            </div>
+        </dl>
+    {% endif %}
+    {%  if url1 %}
+        <dl style="padding:3px">
+            <h2 class="padd font2" style="font-size:18px"><a href="{{url1}}}" ><strong>{{name1}}</strong></a></h2>
+            <div class="b_caption">
+                <cite class="cite_color">{{disp_url1}}</cite>
+                <p>{{snippet1}}</p>
+            </div>
+        </dl>
+    {% endif %}
+    {%  if url2 %}
+        <dl style="padding:3px">
+            <h2 class="padd font2" style="font-size:18px"><a href="{{url0}}}" ><strong>{{name2}}</strong></a></h2>
+            <div class="b_caption">
+                <cite class="cite_color">{{disp_url2}}</cite>
+                <p>{{snippet2}}</p>
+            </div>
+        </dl>
+    {% endif %}
+    {%  if url3 %}
+        <dl style="padding:3px">
+            <h2 class="padd font2" style="font-size:18px"><a href="{{url3}}}" ><strong>{{name3}}</strong></a></h2>
+            <div class="b_caption">
+                <cite class="cite_color">{{disp_url3}}</cite>
+                <p>{{snippet3}}</p>
+            </div>
+        </dl>
+    {% endif %}
+    {%  if url4 %}
+        <dl style="padding:3px">
+            <h2 class="padd font2" style="font-size:18px"><a href="{{url4}}}" ><strong>{{name4}}</strong></a></h2>
+            <div class="b_caption">
+                <cite class="cite_color">{{disp_url4}}</cite>
+                <p>{{snippet4}}</p>
+            </div>
+        </dl>
+    {% endif %}
+
+{% endblock %}
+

@@ -1,17 +1,46 @@
 {% extends "home/header.html"%}
 {% block content %}
-	<h3>Name: {{member.Name}}</h3><h6>on {{member.date}}</h6>
-	<p>Roll No.: {{member.RollNo}}</p>
-	<p>Dues: {{member.Dues}}</p>
-	<p>Status: {{member.Status}}</p>
-	<div>
-		{% if member.books.all %}
-        	<p>Books Issued</p>
-			{% for book in member.books.all %}
-				<li><a href="/catalogue/{{book.id}}">{{ book.Title }}</a></li>
-			{% endfor %}
-    	{% else %}
-    		<p>Not Issued Any Book</p>
-    	{% endif %}
+{% load staticfiles %}
+<style>
+  .font1{
+	font-family: 'Merriweather', serif;
+  }
+  .font2{
+	font-family: 'Lato', sans-serif;
+  }
+</style>
+	<div class="row font2">
+		<div class="col-sm-8">
+			<h3 class="font1">{{member.Name}}</h3><h6>on {{member.date}}</h6>
+			<div class="row">
+				<div class="col-md-3">
+					<p><strong>Roll No.: </strong>{{member.RollNo}}</p>
+				</div>
+				<div class="col-md-6">
+					<p><strong> Email ID: </strong> {{member.EmailID}}</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<p><strong>Slots: </strong>{{member.Slots}}</p>
+				</div>
+				<div class="col-md-3">
+					<p><strong>Dues: </strong>{{member.Fine}}</p>
+				</div>
+			</div>
+			<div>
+				{% if member.books.all %}
+		        	<p class="font1"><strong>Books Issued :</strong> </p>
+					{% for book in member.books.all %}
+						<li class="font2" ><a href="/catalogue/{{book.id}}">{{ book.Title }}</a></li>
+					{% endfor %}
+		    	{% endif %}
+			</div>
+		</div>
+
+		<div class="col-sm-4">
+			<img src="http://oa.cc.iitk.ac.in:8181/Oa/Jsp/Photo/{{member.RollNo}}_0.jpg" onerror="this.onerror=null;this.src='{% static 'home/img/default-user.jpg' %}';" class="img-rounded img-responsive">  				
+		</div>
 	</div>
+	
 {% endblock %}

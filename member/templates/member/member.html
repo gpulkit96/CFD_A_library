@@ -1,23 +1,30 @@
 {% extends "home/header.html" %}
 {% block content %}
+  <style>
+    .font1{
+    font-family: 'Merriweather', serif;
+    }
+    .font2{
+    font-family: 'Lato', sans-serif;
+    }
+  </style>
+  <div class="font2">
   <form method="GET" action=''>
-  <div class="row">
+  <div class="row font2">
     <div class="col-sm-2">
       <input type='text' name='q' class="form-control" placeholder='Search Members' value ='{{request.GET.q}}' aria-describedby="basic-addon2"/>
     </div>
     <div class="col-sm-2"> 
       <select class="form-control" id="s" name="f" value= '{{request.GET.f}}'>
-        <option selected="selected">Choose</option>
-        <option>Name</option>
+        <option selected="selected">Name</option>
         <option>RollNo</option>
-        <option>Status</option>
       </select>
     </div>
     <div class="col-sm-2" > 
             <select class="form-control" id="s1" name="i" value= '{{request.GET.i}}'>
                 <option selected="selected">Entries</option>
                 <option>1-10</option>
-                <option>1-20</option>
+                <option>1-30</option>
                 <option>1-50</option>
                 <option>All</option>
             </select>
@@ -40,6 +47,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>RollNo</th>
+            <th>Dues</th>
             <th>Date</th>
           </tr>
         </thead>
@@ -49,9 +57,11 @@
                  <h5><td>{{ post.id }}</td>
                    <td><a href="/member/{{post.id}}">{{ post.Name }}</a></td>
                    <td>{{ post.RollNo }}</td>
+                   <td>{{ post.Fine}}</td>
                    <td>{{ post.date }}</td></h5>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+    </div>
 {% endblock %}

@@ -1,5 +1,25 @@
-{% extends "home/header.html"%}
+{% extends "home/header.html" %}
 {% block content %}
-<p><b><h3>Instructions : </h3></b></p>
-{%include "home/includes/inst.html"%}
+<div class="font2">
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-4">
+            <a href="/bing/">
+                <center>
+                <img src="static/home/img/bing.png" class="img-circle responsive-img" style='max-height:200px;' alt="face">
+                <h3>Bing Search</h3>
+                </center>
+            </a>
+        </div>
+        <div class="col-sm-4">
+            <a href='/trending/'>
+                <center>
+                <img src="static/home/img/trending.png" class="responsive-img" style='max-height:200px;' alt="face">
+                <h3>Trending</h3>
+                </center>
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -9,39 +9,40 @@ class Member(models.Model):
 	RollNo=models.CharField(max_length=140)
 	EmailID=models.CharField(max_length=140)
 	Slots=models.CharField(max_length=140)
-	Dues=models.CharField(max_length=140)
 	IssuedBy=models.CharField(max_length=140)
-	Status=models.CharField(max_length=140, null=True)
-	date=models.DateTimeField()
-	books = models.ManyToManyField(Post, null=True)
 	Fine = models.IntegerField(default=0)
+	books = models.ManyToManyField(Post, null=True, blank=True)
+	date=models.DateTimeField()
 
 	def __str__(self):
-		allbooks = Post.objects.all()
-		books_list = allbooks.filter(memberid__icontains =self.id)
+		books_list = Post.objects.filter(memberid=self.id)
 		books = self.books.all()
 		for book in books:
-				if (datetime.now(pytz.timezone('Asia/Kolkata')) - book.date).days > 14:
+				if (datetime.now(pytz.timezone('Asia/Kolkata')) - book.date).days >14:
+					if (self.EmailID=='sshanu@iitk.ac.in')and(book.duestatus == 0):
+						email = EmailMessage('Due', book.Title+'is due', to=[self.EmailID])
+						# for iitk mail
+						# email = EmailMessage('Due', book.Title+'is due' ,'sshanu@iitk.ac.in', to=[self.EmailID])  
+						email.send()
+						book.duestatus = 1
 					self.Fine += int((datetime.now(pytz.timezone('Asia/Kolkata')) - book.hidden_date).days)
 					book.hidden_date = datetime.now(pytz.timezone('Asia/Kolkata'))
-				book.memberid = self.id
-				book.member_Name =self.Name
-				book.date = datetime.now(pytz.timezone('Asia/Kolkata'))
-				book.hidden_date = datetime.now(pytz.timezone('Asia/Kolkata'))
 				book.save()
-				# if self.EmailID=='sshanu@iitk.ac.in':
-				# 	email = EmailMessage('Due', book.Title+'is due' ,'sshanu@iitk.ac.in', to=[self.EmailID])
-				# 	email.send()
-
 
 		for book_by_id in books_list:
-			for  book in books:
-				if (book_by_id.memberid==book.id):
+			if(len(books)!=0):
+				for  book in books:
 					if book.id == book_by_id.id:
 						break
 					book_by_id.memberid = None
 					book_by_id.member_Name = None
+					book_by_id.duestatus = 0
 					book_by_id.save()
+			else:
+				book_by_id.memberid = None
+				book_by_id.member_Name = None
+				book_by_id.duestatus = 0
+				book_by_id.save()
 		self.save()
 		return self.Name
 
@@ -49,7 +50,6 @@ class Member(models.Model):
 		books = self.books.all()
 		for book in books:
 			if (book.memberid !=self.id):
-				print(book.memberid)
 				book.memberid = self.id
 				book.member_Name =self.Name
 				book.date = datetime.now(pytz.timezone('Asia/Kolkata'))
@@ -57,3 +57,4 @@ class Member(models.Model):
 				book.save()	
 		super(Member, self).save(*args, **kwargs)
 		super(Member, self).save(*args, **kwargs)
+		
