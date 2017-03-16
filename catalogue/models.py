@@ -15,13 +15,13 @@ class Post(models.Model):
 	Author=models.CharField(max_length=140)
 	date=models.DateTimeField(editable=False)
 	hidden_date=models.DateTimeField(null=True , editable=False)
-	member_Name =models.CharField(max_length=140, editable=False, null=True)
-	memberid = models.IntegerField(editable=False, null=True)
+	member_Name =models.CharField(max_length=140, editable=False, null=True,blank=True)
+	memberid = models.IntegerField(editable=False, null=True,blank=True)
 	choices = ((0 , 'OK'), (1, 'DUE'))
 	duestatus = models.IntegerField(choices = choices, default=0)
-	image = models.CharField(max_length=500, null=True)
-	description = models.CharField(max_length=2000, null=True)
-	rating = models.CharField(max_length=100,null=True)
+	image = models.CharField(max_length=500, null=True,blank=True)
+	description = models.CharField(max_length=3000, null=True,blank=True)
+	rating = models.CharField(max_length=100,null=True,blank=True)
 
 	def __str__(self):
 		h1 = Home.objects.first()
