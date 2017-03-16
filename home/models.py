@@ -1,3 +1,25 @@
 from django.db import models
 
-# Create your models here.
+class Home(models.Model):
+	date=models.DateTimeField(editable=False)
+	book_date=models.DateTimeField(editable=False, null=True)
+	id0 = models.IntegerField(editable=False,null=True)
+	id1 = models.IntegerField(editable=False,null=True)
+	id2 = models.IntegerField(editable=False,null=True)
+	id3 = models.IntegerField(editable=False,null=True)
+	id4 = models.IntegerField(editable=False,null=True)
+	id5 = models.IntegerField(editable=False,null=True)
+	id6 = models.IntegerField(editable=False,null=True)
+	id7 = models.IntegerField(editable=False,null=True)
+	id8 = models.IntegerField(editable=False,null=True)
+	id9 = models.IntegerField(editable=False,null=True)
+	id10 = models.IntegerField(editable=False,null=True)
+	id11 = models.IntegerField(editable=False,null=True)
+	id12 = models.IntegerField(editable=False,null=True)
+	id13 = models.IntegerField(editable=False,null=True)
+	id14 = models.IntegerField(editable=False,null=True)
+	id15 = models.IntegerField(editable=False,null=True)
+	id16 = models.IntegerField(editable=False,null=True)
+	id17 = models.IntegerField(editable=False,null=True)
+	id18 = models.IntegerField(editable=False,null=True)
+	id19 = models.IntegerField(editable=False,null=True)
