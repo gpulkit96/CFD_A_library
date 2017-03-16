@@ -7,9 +7,10 @@ For more details [Documentation.pdf](https://github.com/R-Wolf/CFD_A_library/blo
 - Goodreads Api is used for book description, review, rating and book cover. 
 - Automatic fine calculation.
 - A reminder mail is send when a book is due.
-- Users image is displayed from IITK database.
+- User's image is displayed from IITK database.
 - Admin and various staff accounts.
-
+- Bing Search.
+- Trending Section of every week.
 ### Install via pip
 ```
 pip install A_library
