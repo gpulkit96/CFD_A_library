@@ -1,6 +1,7 @@
 # CFD_A_library
 An automated library software to catalogue books and efficiently displays its details.
 
+For more details [Documentation.pdf](https://github.com/R-Wolf/CFD_A_library/blob/master/Documentation.pdf)
 ### Features
 - Implemented in Django Framework and MySql database.
 - Goodreads Api is used for book description, review, rating and book cover. 
