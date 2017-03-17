@@ -26,7 +26,8 @@ def bing(request):
 			try:
 				r = requests.get(url + str(query) + urlend, headers=headers)
 				webpages = (r.json())["webPages"]["value"]
-				for x in range(5):
+				l = len(webpages)
+				for x in range(l):
 					value = webpages[x]
 					context['name'+str(x)] = value['name']
 					context['url'+str(x)] = value['url']
