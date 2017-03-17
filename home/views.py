@@ -25,14 +25,19 @@ def bing(request):
 			headers = {'Ocp-Apim-Subscription-Key': '9fd91d75528344cb9b983e7ca664adfd'}
 			try:
 				r = requests.get(url + str(query) + urlend, headers=headers)
-				webpages = (r.json())["webPages"]["value"]
-				l = len(webpages)
-				for x in range(l):
-					value = webpages[x]
-					context['name'+str(x)] = value['name']
-					context['url'+str(x)] = value['url']
-					context['disp_url'+str(x)] = value['displayUrl']
-					context['snippet'+str(x)] = value['snippet']
+				result = r.json()
+
+				if ( 'webPages' in result):
+					webpages = result["webPages"]["value"]
+					l = len(webpages)
+					for x in range(l):
+						value = webpages[x]
+						context['name'+str(x)] = value['name']
+						context['url'+str(x)] = value['url']
+						context['disp_url'+str(x)] = value['displayUrl']
+						context['snippet'+str(x)] = value['snippet']
+				else:
+					context['noresult'] = 'No Result Found!'
 			except requests.exceptions.ConnectionError:
 				status_code = "Connection refused"
 						

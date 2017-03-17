@@ -84,6 +84,11 @@
             </div>
         </dl>
     {% endif %}
+     {%  if noresult %}
+        <dl style="padding:5px">
+                <h2 class="padd font2" style="font-size:18px">{{noresult}}</h2>
+        </dl>
+    {% endif %}
 
 {% endblock %}
 
