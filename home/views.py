@@ -8,10 +8,34 @@ from django.http import HttpResponse
 import requests
 import json
 from django.http import HttpResponseRedirect
-
+from django.core.management import call_command
+from pyexcel_ods import save_data
+import json
 def index(request):
-	
-	return render(request, 'home/home.html')
+	context={}
+	context['status'] = None
+	if(request.method == 'GET'):
+		print("data")
+		app_name = request.GET.get('f')
+		if app_name!=None:
+			output = open('home/static/home/data.json','w')
+			call_command('dumpdata',app_name,format='json',indent=3,stdout=output)
+			output.close()
+
+			if app_name=='member':
+				with open('home/static/home/data.json') as data_file:    
+				    data_file = json.load(data_file)
+				data = [["Name", "Roll No.", "Email ID", "Slots", "Fine"]]
+				l = len(data_file)
+				for x in range(0, l):
+					fields = data_file[x]["fields"]
+					data.append([fields["Name"], fields["RollNo"], fields["EmailID"], fields["Slots"], fields["Fine"]])
+					print(data)
+				sheet = {"Member": data}
+				save_data("home/static/home/dataods.ods", sheet)
+			
+			context['status'] = 'ok'
+	return render(request, 'home/home.html',context)
 
 def bing(request):
 	context={}
