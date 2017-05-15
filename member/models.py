@@ -48,9 +48,9 @@ class Member(models.Model):
 				book_by_id.member_Name = None
 				book_by_id.duestatus = 0
 				book_by_id.save()
-		
-		return self.Name
-
+		print("end")
+		return self.Name.encode('ascii', errors='replace')
+ 
 	def save(self, *args, **kwargs):
 		if not self.pk:
 			self.hidden_date = datetime.now(pytz.timezone('Asia/Kolkata'))
@@ -65,4 +65,3 @@ class Member(models.Model):
 					book.save()	
 		super(Member, self).save(*args, **kwargs)
 		super(Member, self).save(*args, **kwargs)
-		

@@ -25,8 +25,8 @@ class IndexView(generic.ListView):
 				queryset_list = queryset_list.filter(Author__icontains =query)
 			elif filter_q=="Genre":
 				queryset_list = queryset_list.filter(Genre__icontains =query)
-			elif filter_q=="Call Num":
-				queryset_list = queryset_list.filter(CallNum__icontains =query)
+			elif filter_q=="Barcode":
+				queryset_list = queryset_list.filter(Barcode__icontains =query)
 		if noviews=="1-30":
 			return queryset_list[:30]
 		elif noviews=="1-50":

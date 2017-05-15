@@ -32,9 +32,20 @@ def index(request):
 					data.append([fields["Name"], fields["RollNo"], fields["EmailID"], fields["Slots"], fields["Fine"]])
 					print(data)
 				sheet = {"Member": data}
-				save_data("home/static/home/dataods.ods", sheet)
-			
-			context['status'] = 'ok'
+				save_data("home/static/home/member.ods", sheet)
+
+			if app_name=='catalogue':
+				with open('home/static/home/data.json') as data_file:    
+				    data_file = json.load(data_file)
+				data = [["Barcode", "Genre", "Title", "Author","Image"]]
+				l = len(data_file)
+				for x in range(0, l):
+					fields = data_file[x]["fields"]
+					data.append([fields["Barcode"], fields["Genre"], fields["Title"], fields["Author"]])
+					print(data)
+				sheet = {"Catalogue": data}
+				save_data("home/static/home/catalogue.ods", sheet)
+			context['status'] = app_name
 	return render(request, 'home/home.html',context)
 
 def bing(request):

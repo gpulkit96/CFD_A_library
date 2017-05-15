@@ -54,11 +54,11 @@
         <tbody>
             {% for post in object_list %}
                 <tr>
-                 <h5><td>{{ post.id }}</td>
-                   <td><a href="/member/{{post.id}}">{{ post.Name }}</a></td>
-                   <td>{{ post.RollNo }}</td>
-                   <td>{{ post.Fine}}</td>
-                   <td>{{ post.date }}</td></h5>
+                 <h5><td class="col-sm-1">{{ post.id }}</td>
+                   <td class="col-sm-2"><a href="/member/{{post.id}}">{{ post.Name }}</a></td>
+                   <td class="col-sm-2">{{ post.RollNo }}</td>
+                   <td class="col-sm-1">{{ post.Fine}}</td>
+                   <td class="col-sm-2">{{ post.date }}</td></h5>
                 </tr>
             {% endfor %}
         </tbody>

@@ -1,5 +1,6 @@
 {% extends "home/header.html"%}
 {% block content %}
+{% load staticfiles %}
 	<style>
 	  .font1{
 		font-family: 'Merriweather', serif;
@@ -19,7 +20,7 @@
 					<p><strong>Author: </strong>{{post.Author}}</p>
 				</div>
 				<div class="col-md-3">
-					<p><strong >Call Num: </strong>{{post.CallNum}}</p>
+					<p><strong >Barcode: </strong>{{post.Barcode}}</p>
 				</div>
 				<div class="col-md-3">
 					{%  if post.rating %}
@@ -42,7 +43,7 @@
 			
 		</div>
 		<div class="col-md-4">
-			<img src="{{post.image}}" class="img-rounded i" height="250">
+			<img src="{{post.image}}" onerror="this.onerror=null;this.src='{% static 'home/img/goodreads.png' %}';" class="img-rounded i" height="250">
 		</div>
 	</div>
 	
