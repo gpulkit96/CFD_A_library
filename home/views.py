@@ -37,7 +37,7 @@ def index(request):
 			if app_name=='catalogue':
 				with open('home/static/home/data.json') as data_file:    
 				    data_file = json.load(data_file)
-				data = [["Barcode", "Genre", "Title", "Author","Image"]]
+				data = [["Barcode", "Genre", "Title", "Author"]]
 				l = len(data_file)
 				for x in range(0, l):
 					fields = data_file[x]["fields"]

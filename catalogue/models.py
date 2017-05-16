@@ -17,7 +17,7 @@ class Post(models.Model):
 	member_Name =models.CharField(max_length=140, editable=False, null=True,blank=True)
 	memberid = models.IntegerField(editable=False, null=True,blank=True)
 	choices = ((0 , 'OK'), (1, 'DUE'))
-	duestatus = models.IntegerField(choices = choices, default=0,editable=False)
+	duestatus = models.IntegerField(choices = choices, default=0)
 	image = models.CharField(max_length=500, null=True,blank=True)
 	description = models.CharField(max_length=3000, null=True,blank=True)
 	rating = models.CharField(max_length=100,null=True,blank=True)
