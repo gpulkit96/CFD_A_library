@@ -11,17 +11,16 @@ For more details [Documentation.pdf](https://github.com/R-Wolf/CFD_A_library/blo
 - Admin and various staff accounts.
 - Bing Search.
 - Trending Section of every week.
-### Install via pip
-```
-pip install A_library
-```
 
-### Install via Github
+### Install
 
 ```
 git clone https://github.com/R-Wolf/CFD_A_library
 ```
-
+For python3 :
+```
+git checkout Python3pkg-master
+```
 #### Requirements 
 Python Packages
 - Pytz
