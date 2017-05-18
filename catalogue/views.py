@@ -8,7 +8,7 @@ import requests
 import json
 import re
 import xml.etree.ElementTree as ET
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from django import forms
 
 class IndexView(generic.ListView):

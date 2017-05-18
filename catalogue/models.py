@@ -3,7 +3,7 @@ import requests
 import json
 import re
 import xml.etree.ElementTree as ET
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from home.models import Home
 from datetime import datetime, timedelta
 import pytz
@@ -43,10 +43,10 @@ class Post(models.Model):
 			try:
 	   			r = requests.get('https://github.com')
 				goodreads_url = 'https://www.goodreads.com/book/title.xml?oauth_signature_method=HMAC-SHA1&oauth_timestamp=1488887063&oauth_nonce=pHIGhp&oauth_version=1.0&oauth_signature=0S3FtoGajPVaW034/TR/CdsTta0=&key=r1kcfqJjWCaypoMLJzPGw&title='+bTitle+'&author='+bAuthor
-				gd = ET.parse(urllib.urlopen(goodreads_url)).getroot()
+				gd = ET.parse(urllib.request.urlopen(goodreads_url)).getroot()
 				if gd.tag=="error":
 					goodreads_url = 'https://www.goodreads.com/book/title.xml?oauth_signature_method=HMAC-SHA1&oauth_timestamp=1488887063&oauth_nonce=pHIGhp&oauth_version=1.0&oauth_signature=0S3FtoGajPVaW034/TR/CdsTta0=&key=r1kcfqJjWCaypoMLJzPGw&title='+bTitle
-					gd = ET.parse(urllib.urlopen(goodreads_url)).getroot()
+					gd = ET.parse(urllib.request.urlopen(goodreads_url)).getroot()
 				try:
 					gd = gd[1]
 					description =  gd.find('description').text

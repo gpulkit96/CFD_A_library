@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from catalogue.models import Post
 from home.models import Home
 from datetime import datetime, timedelta
@@ -41,7 +41,7 @@ def bing(request):
 	context={}
 	if(request.method == 'GET'):
 		query = request.GET.get('q')
-		print(query,"que")
+		print((query,"que"))
 		if query!=None and query!='':
 		
 			url = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q='
@@ -83,7 +83,7 @@ def trending(request):
 				if f==20:
 					break
 				context['id'+str(f)]=book.id
-				urllib.urlretrieve(url, "home/static/home/img/home"+str(f)+".jpg")
+				urllib.request.urlretrieve(url, "home/static/home/img/home"+str(f)+".jpg")
 				f += 1
 		h1.id0 = context['id0']
 		h1.id1 = context['id1']
