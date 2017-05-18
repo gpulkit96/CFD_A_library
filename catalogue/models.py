@@ -40,9 +40,10 @@ class Post(models.Model):
 			url = 'https://api.cognitive.microsoft.com/bing/v5.0/images/search?q='
 			urlend = '&count=2&offset=0&mkt=en-us&safesearch=Off'
 			headers = {'Ocp-Apim-Subscription-Key': '9fd91d75528344cb9b983e7ca664adfd'}
+			url1 = 'https://www.goodreads.com/book/title.xml?oauth_signature_method=HMAC-SHA1&oauth_timestamp=1488887063&oauth_nonce=pHIGhp&oauth_version=1.0&oauth_signature=0S3FtoGajPVaW034/TR/CdsTta0=&key=r1kcfqJjWCaypoMLJzPGw&title='
 			try:
-	   			r = requests.get('https://github.com')
-				goodreads_url = 'https://www.goodreads.com/book/title.xml?oauth_signature_method=HMAC-SHA1&oauth_timestamp=1488887063&oauth_nonce=pHIGhp&oauth_version=1.0&oauth_signature=0S3FtoGajPVaW034/TR/CdsTta0=&key=r1kcfqJjWCaypoMLJzPGw&title='+bTitle+'&author='+bAuthor
+				r = requests.get('https://github.com')
+				goodreads_url = url1+bTitle + '&author='+ bAuthor
 				gd = ET.parse(urllib.request.urlopen(goodreads_url)).getroot()
 				if gd.tag=="error":
 					goodreads_url = 'https://www.goodreads.com/book/title.xml?oauth_signature_method=HMAC-SHA1&oauth_timestamp=1488887063&oauth_nonce=pHIGhp&oauth_version=1.0&oauth_signature=0S3FtoGajPVaW034/TR/CdsTta0=&key=r1kcfqJjWCaypoMLJzPGw&title='+bTitle
