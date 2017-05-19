@@ -26,7 +26,7 @@ SECRET_KEY = '64$x#vvbtckmsw+dv&sxp9bgh*55hjz7t9%0z@p91$89n^o@%_'
 DEBUG = True
 
 ALLOWED_HOSTS = (
-    'localhost','automated-library.azurewebsites.net','127.0.0.1',
+    'localhost','gymkhanalibrary.pythonanywhere.com','127.0.0.1',
 )
 
 # Application definition
@@ -126,7 +126,7 @@ EMAIL_USE_TLS = True
 # EMAIL_HOST_PASSWORD = ''
 # EMAIL_PORT = 25
 
-# 
+#
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'sshanuiit659@gmail.com'
 EMAIL_HOST_PASSWORD = 'shanu123'

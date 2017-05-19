@@ -17,16 +17,16 @@ class Post(models.Model):
 	member_Name =models.CharField(max_length=140, editable=False, null=True,blank=True)
 	memberid = models.IntegerField(editable=False, null=True,blank=True)
 	choices = ((0 , 'OK'), (1, 'DUE'))
-	duestatus = models.IntegerField(choices = choices, default=0)
+	duestatus = models.IntegerField(choices = choices, default=0, editable=False)
 	image = models.CharField(max_length=500, null=True,blank=True)
 	description = models.CharField(max_length=3000, null=True,blank=True)
 	rating = models.CharField(max_length=100,null=True,blank=True)
 
 	def __str__(self):
 		h1 = Home.objects.first()
-		
+
 		# if (self.image==None)and((datetime.now(pytz.timezone('Asia/Kolkata')) - h1.book_date).days >1):
-		if (self.image==None):
+		if (0):
 			title = re.sub("[^\w]", " ",  self.Title).split()
 			author = re.sub("[^\w]", " ",  self.Author).split()
 			p = re.compile(r'<.*?>')
@@ -53,17 +53,17 @@ class Post(models.Model):
 					description =  gd.find('description').text
 					if description!= None:
 						self.description = p.sub('', description)
-					
+
 					self.rating = gd.find('average_rating').text
 					self.image= gd.find('image_url').text
 					self.save()
 				except IndexError:
 					gd = None
-					
+
 				if (self.image == None):
 					self.image= 'https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png'
 					self.save()
-			
+
 			except requests.exceptions.ConnectionError:
 				status_code = "Connection refused"
 		return  (self.Title +"_____"+self.Barcode).encode('ascii', errors='replace')
