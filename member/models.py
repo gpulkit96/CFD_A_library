@@ -19,13 +19,13 @@ class Member(models.Model):
 		books_list = Post.objects.filter(memberid=self.id)
 		books = self.books.all()
 		if (datetime.now(pytz.timezone('Asia/Kolkata')) - self.hidden_date).days >1:
-			
+
 			for book in books:
 					if (datetime.now(pytz.timezone('Asia/Kolkata')) - book.date).days >14:
 						if (self.EmailID=='sshanu@iitk.ac.in')and(book.duestatus == 0):
 							email = EmailMessage('Due', book.Title+'is due', to=[self.EmailID])
 							# for iitk mail
-							# email = EmailMessage('Due', book.Title+'is due' ,'sshanu@iitk.ac.in', to=[self.EmailID])  
+							# email = EmailMessage('Due', book.Title+'is due' ,'sshanu@iitk.ac.in', to=[self.EmailID])
 							email.send()
 							book.duestatus = 1
 						self.Fine += int((datetime.now(pytz.timezone('Asia/Kolkata')) - book.hidden_date).days)
@@ -36,12 +36,14 @@ class Member(models.Model):
 
 		for book_by_id in books_list:
 			if(len(books)!=0):
+				f=0
 				for  book in books:
 					if book.id == book_by_id.id:
+						f=1
 						break
+				if f==0:
 					book_by_id.memberid = None
 					book_by_id.member_Name = None
-					book_by_id.duestatus = 0
 					book_by_id.save()
 			else:
 				book_by_id.memberid = None
@@ -50,7 +52,7 @@ class Member(models.Model):
 				book_by_id.save()
 		print("end")
 		return self.Name.encode('ascii', errors='replace')
- 
+
 	def save(self, *args, **kwargs):
 		if not self.pk:
 			self.hidden_date = datetime.now(pytz.timezone('Asia/Kolkata'))
@@ -62,6 +64,6 @@ class Member(models.Model):
 					book.member_Name =self.Name
 					book.date = datetime.now(pytz.timezone('Asia/Kolkata'))
 					book.hidden_date = datetime.now(pytz.timezone('Asia/Kolkata'))
-					book.save()	
+					book.save()
 		super(Member, self).save(*args, **kwargs)
 		super(Member, self).save(*args, **kwargs)
