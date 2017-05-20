@@ -21,16 +21,21 @@ class Member(models.Model):
 		if (datetime.now(pytz.timezone('Asia/Kolkata')) - self.hidden_date).days >1:
 
 			for book in books:
-					if (datetime.now(pytz.timezone('Asia/Kolkata')) - book.date).days >14:
-						if (self.EmailID=='sshanu@iitk.ac.in')and(book.duestatus == 0):
-							email = EmailMessage('Due', book.Title+'is due', to=[self.EmailID])
-							# for iitk mail
-							# email = EmailMessage('Due', book.Title+'is due' ,'sshanu@iitk.ac.in', to=[self.EmailID])
-							email.send()
-							book.duestatus = 1
-						self.Fine += int((datetime.now(pytz.timezone('Asia/Kolkata')) - book.hidden_date).days)
-						book.hidden_date = datetime.now(pytz.timezone('Asia/Kolkata'))
-					book.save()
+				if(book.date==None):
+					book.date = datetime.now(pytz.timezone('Asia/Kolkata'))
+				if(book.hidden_date==None):
+					book.hidden_date = book.date
+				book.save()
+				if (datetime.now(pytz.timezone('Asia/Kolkata')) - book.date).days >14:
+					if (self.EmailID=='sshanu@iitk.ac.in')and(book.duestatus == 0):
+						email = EmailMessage('Due', book.Title+'is due', to=[self.EmailID])
+						# for iitk mail
+						# email = EmailMessage('Due', book.Title+'is due' ,'sshanu@iitk.ac.in', to=[self.EmailID])
+						email.send()
+						book.duestatus = 1
+					self.Fine += int((datetime.now(pytz.timezone('Asia/Kolkata')) - book.hidden_date).days)
+					book.hidden_date = datetime.now(pytz.timezone('Asia/Kolkata'))
+				book.save()
 			self.hidden_date = datetime.now(pytz.timezone('Asia/Kolkata'))
 			self.save()
 
@@ -50,7 +55,13 @@ class Member(models.Model):
 				book_by_id.member_Name = None
 				book_by_id.duestatus = 0
 				book_by_id.save()
-		print("end")
+		for book in books:
+				if (book.memberid !=self.id):
+					book.memberid = self.id
+					book.member_Name =self.Name
+					book.date = datetime.now(pytz.timezone('Asia/Kolkata'))
+					book.hidden_date = datetime.now(pytz.timezone('Asia/Kolkata'))
+					book.save()
 		return self.Name.encode('ascii', errors='replace')
 
 	def save(self, *args, **kwargs):
