@@ -56,12 +56,12 @@ class Member(models.Model):
 				book_by_id.duestatus = 0
 				book_by_id.save()
 		for book in books:
-				if (book.memberid !=self.id):
-					book.memberid = self.id
-					book.member_Name =self.Name
-					book.date = datetime.now(pytz.timezone('Asia/Kolkata'))
-					book.hidden_date = datetime.now(pytz.timezone('Asia/Kolkata'))
-					book.save()
+			if (book.memberid !=self.id):
+				book.memberid = self.id
+				book.member_Name =self.Name
+				book.date = datetime.now(pytz.timezone('Asia/Kolkata'))
+				book.hidden_date = datetime.now(pytz.timezone('Asia/Kolkata'))
+				book.save()
 		return self.Name.encode('ascii', errors='replace')
 
 	def save(self, *args, **kwargs):
