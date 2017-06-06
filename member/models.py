@@ -27,13 +27,15 @@ class Member(models.Model):
 					book.hidden_date = book.date
 				book.save()
 				if (datetime.now(pytz.timezone('Asia/Kolkata')) - book.date).days >14:
-					if (self.EmailID=='sshanu@iitk.ac.in')and(book.duestatus == 0):
-						email = EmailMessage('Due', book.Title+'is due', to=[self.EmailID])
+					if (book.duestatus == 0):
+						# email = EmailMessage('Due', book.Title+'is due', to=[self.EmailID])
 						# for iitk mail
 						# email = EmailMessage('Due', book.Title+'is due' ,'sshanu@iitk.ac.in', to=[self.EmailID])
-						email.send()
+						# email.send()
+						self.Fine += int((datetime.now(pytz.timezone('Asia/Kolkata')) - book.hidden_date).days)-14
 						book.duestatus = 1
-					self.Fine += int((datetime.now(pytz.timezone('Asia/Kolkata')) - book.hidden_date).days)
+					else:
+						self.Fine += int((datetime.now(pytz.timezone('Asia/Kolkata')) - book.hidden_date).days)
 					book.hidden_date = datetime.now(pytz.timezone('Asia/Kolkata'))
 				book.save()
 			self.hidden_date = datetime.now(pytz.timezone('Asia/Kolkata'))
