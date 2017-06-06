@@ -26,8 +26,8 @@ class Post(models.Model):
 		h1 = Home.objects.first()
 
 		# if (self.image==None)and((datetime.now(pytz.timezone('Asia/Kolkata')) - h1.book_date).days >1):
-		# if (0):
-		if (self.image==None and self.Author!='--'):
+		if (0):
+# 		if (self.image==None and self.Author!='--'):
 			title = re.sub("[^\w]", " ",  self.Title).split()
 			author = re.sub("[^\w]", " ",  self.Author).split()
 			p = re.compile(r'<.*?>')
