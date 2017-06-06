@@ -26,7 +26,8 @@ class Post(models.Model):
 		h1 = Home.objects.first()
 
 		# if (self.image==None)and((datetime.now(pytz.timezone('Asia/Kolkata')) - h1.book_date).days >1):
-		if (0):
+		# if (0):
+		if (self.image==None and self.Author!='--'):
 			title = re.sub("[^\w]", " ",  self.Title).split()
 			author = re.sub("[^\w]", " ",  self.Author).split()
 			p = re.compile(r'<.*?>')
@@ -42,7 +43,7 @@ class Post(models.Model):
 			urlend = '&count=2&offset=0&mkt=en-us&safesearch=Off'
 			headers = {'Ocp-Apim-Subscription-Key': '9fd91d75528344cb9b983e7ca664adfd'}
 			try:
-	   			r = requests.get('https://github.com')
+				r = requests.get('https://github.com')
 				goodreads_url = 'https://www.goodreads.com/book/title.xml?oauth_signature_method=HMAC-SHA1&oauth_timestamp=1488887063&oauth_nonce=pHIGhp&oauth_version=1.0&oauth_signature=0S3FtoGajPVaW034/TR/CdsTta0=&key=r1kcfqJjWCaypoMLJzPGw&title='+bTitle+'&author='+bAuthor
 				gd = ET.parse(urllib.urlopen(goodreads_url)).getroot()
 				if gd.tag=="error":
