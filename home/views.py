@@ -25,11 +25,11 @@ def index(request):
 			if app_name=='member':
 				with open('home/static/home/data.json') as data_file:    
 				    data_file = json.load(data_file)
-				data = [["Name", "Roll No.", "Email ID", "Slots", "Fine"]]
+				data = [["Name", "Roll No.", "Email ID", "Slots", "Fine", "No. of Books"]]
 				l = len(data_file)
 				for x in range(0, l):
 					fields = data_file[x]["fields"]
-					data.append([fields["Name"], fields["RollNo"], fields["EmailID"], fields["Slots"], fields["Fine"]])
+					data.append([fields["Name"], fields["RollNo"], fields["EmailID"], fields["Slots"], fields["Fine"], fields["num_books"]])
 					print(data)
 				sheet = {"Member": data}
 				save_data("home/static/home/member.ods", sheet)
